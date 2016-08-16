@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import PlayBlock from './PlayBlock'
 
+import { track1, track2, track3, track4 } from './files'
+
 export default class Audio extends Component {
 
   constructor(props) {
@@ -10,22 +12,35 @@ export default class Audio extends Component {
     this.state = {
       blocks: [
         {
-          src: 'https://s3-eu-west-1.amazonaws.com/newsrig/test/tmp/audio/2ace66dfacaa95cf59a31dc44e7b27b7098a838000f5ba6f64bfd51af0588e49.m4a'
+          src: track1
         },
         {
-          src: 'https://s3-eu-west-1.amazonaws.com/newsrig/test/tmp/audio/2ace66dfacaa95cf59a31dc44e7b27b7098a838000f5ba6f64bfd51af0588e49.m4a'
+          src: track2
         },
         {
-          src: 'https://s3-eu-west-1.amazonaws.com/newsrig/test/tmp/audio/2ace66dfacaa95cf59a31dc44e7b27b7098a838000f5ba6f64bfd51af0588e49.m4a'
+          src: track3
+        },
+        {
+          src: track4
         }
-      ]
+      ],
+      playing: null
     }
+  }
+
+  setPlaying(idx) {
+    this.setState({ playing: idx })
   }
 
   render() {
     const blocks = this.state.blocks.map((block, idx) => {
       return (
-        <PlayBlock src={block.src} key={idx}/>
+        <PlayBlock
+          src={block.src}
+          key={idx}
+          onClick={() => this.setPlaying(idx)}
+          playing={ idx === this.state.playing }
+          />
       )
     })
 
