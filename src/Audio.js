@@ -7,22 +7,26 @@ class Audio extends Component {
 
   constructor(props) {
     super(props)
-
-    this.state = {
-      src: track1,
-      playing: false // set this 'true' to play on component mount
-    }
   }
 
   componentDidMount() {
-    if (this.state.playing) {
+    if (this.props.playing) {
       ReactDOM.findDOMNode(this).play()
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.playing) {
+      ReactDOM.findDOMNode(this).play()
+    } else {
+      ReactDOM.findDOMNode(this).currentTime = 0
+      ReactDOM.findDOMNode(this).pause()
     }
   }
 
   render() {
     return (
-      <audio refs='audio' src={this.state.src}/>
+      <audio refs='audio' src={this.props.src}/>
     )
   }
 }

@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import Audio from './Audio'
 
+import { track1 } from './files'
+
 class PlayBlock extends Component {
 
   constructor(props) {
     super(props)
-    // debugger
     this.state = {
       playing: true,
-      src: ''
+      src: track1
     }
 
     this.onClick = this.onClick.bind(this)
@@ -23,8 +24,15 @@ class PlayBlock extends Component {
 
     return (
       <div>
-        <button onClick={this.onClick}>{ !playing ? 'Play' : 'Stop' }</button>
+
+        <button
+          className="btn btn-primary btn-lg"
+          onClick={this.onClick.bind(this)}>
+          { !playing ? 'Play' : 'Stop' }
+        </button>
+
         <Audio playing={playing} src={src}/>
+
       </div>
     );
   }

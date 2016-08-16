@@ -16,7 +16,9 @@ export default class App extends Component {
           </ul>
           <div className='row'>
             <div className='col-md-12'>
-              {this.props.children}
+              <div style={{padding:'30px 0 0 30px'}}>
+                {this.props.children}
+              </div>
             </div>
           </div>
         </div>
