@@ -5,7 +5,7 @@ class PlayBlock extends Component {
 
   constructor(props) {
     super(props)
-    debugger
+    // debugger
     this.state = {
       playing: true,
       src: ''

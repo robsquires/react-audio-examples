@@ -5,10 +5,10 @@ import App from './App';
 import Audio from './Audio';
 import PlayBlock from './PlayBlock';
 import PlayBlocks from './PlayBlocks';
+import PlayThrough from './PlayThrough';
 
 // using an ES6 transpiler, like babel
 import { Router, Route, Link, browserHistory } from 'react-router'
-
 
 ReactDOM.render((
   <Router history={browserHistory}>
@@ -16,7 +16,7 @@ ReactDOM.render((
       <Route path="/audio" component={Audio}/>
       <Route path="/play-block" component={PlayBlock}/>
       <Route path="/play-blocks" component={PlayBlocks}/>
+      <Route path="/play-through" component={PlayThrough}/>
     </Route>
-
   </Router>
 ), document.getElementById('root'));

@@ -1,27 +1,30 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
+import { track1 } from './files'
+
 class Audio extends Component {
 
-  componentDidUpdate() {
-    if (this.props.playing) {
-      this.getAudioEl().play()
-    } else {
-      this.getAudioEl().currentTime = 0
-      this.getAudioEl().pause()
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      src: track1,
+      playing: false // set this 'true' to play on component mount
     }
   }
 
-  getAudioEl() {
-    return ReactDOM.findDOMNode(this)
+  componentDidMount() {
+    if (this.state.playing) {
+      ReactDOM.findDOMNode(this).play()
+    }
   }
 
   render() {
     return (
-      <audio refs='audio' src={this.props.src} playing={this.props.playing} />
+      <audio refs='audio' src={this.state.src}/>
     )
   }
 }
-
 
 export default Audio
