@@ -1,37 +1,61 @@
 import React, { Component } from 'react'
-
 import PlayBlock from './PlayBlock'
+import * as tracks from './files'
 
 export default class Audio extends Component {
 
   constructor(props) {
     super(props)
 
+    this.playThrough = this.playThrough.bind(this)
+
     this.state = {
       blocks: [
         {
-          src: 'https://s3-eu-west-1.amazonaws.com/newsrig/test/tmp/audio/2ace66dfacaa95cf59a31dc44e7b27b7098a838000f5ba6f64bfd51af0588e49.m4a'
+          src: tracks.track1
         },
         {
-          src: 'https://s3-eu-west-1.amazonaws.com/newsrig/test/tmp/audio/2ace66dfacaa95cf59a31dc44e7b27b7098a838000f5ba6f64bfd51af0588e49.m4a'
+          src: tracks.track2
         },
         {
-          src: 'https://s3-eu-west-1.amazonaws.com/newsrig/test/tmp/audio/2ace66dfacaa95cf59a31dc44e7b27b7098a838000f5ba6f64bfd51af0588e49.m4a'
+          src: tracks.track3
         }
-      ]
+      ],
+      playing: null
     }
+  }
+
+  playBlock(idx) {
+    this.setState({ playing: idx })
+  }
+
+  playThrough() {
+    alert('WIP')
+
   }
 
   render() {
     const blocks = this.state.blocks.map((block, idx) => {
       return (
-        <PlayBlock src={block.src} key={idx}/>
+        <PlayBlock
+          key={idx}
+          src={block.src}
+          playing={idx === this.state.playing}
+          onClick={() => this.playBlock(idx)}
+          />
       )
     })
 
     return (
       <div>
-        {blocks}
+
+        <button
+        className="btn btn-primary btn-lg"
+        onClick={this.playThrough}>Play Through</button>
+
+        <div style={{margin: '10px 0 0 30px'}}>
+          {blocks}
+        </div>
       </div>
     );
   }
