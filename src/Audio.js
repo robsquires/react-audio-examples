@@ -9,6 +9,11 @@ class Audio extends Component {
     super(props)
   }
 
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.playing !== this.props.playing
+  }
+
   componentDidMount() {
     if (this.props.playing) {
       ReactDOM.findDOMNode(this).play()
